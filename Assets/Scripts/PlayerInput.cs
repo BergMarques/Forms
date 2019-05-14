@@ -5,7 +5,10 @@ using UnityEngine.Experimental.Input;
 public class PlayerInput : MonoBehaviour
 {
 
+    [Space]
+    [SerializeField]
     private InputMaster _controlInput;
+
     private Vector2 _moveAxis;
 
     // Start is called before the first frame update
@@ -22,8 +25,10 @@ public class PlayerInput : MonoBehaviour
     }
 
     private void Movement_performed(InputAction.CallbackContext context)
-    {        
+    {
         Debug.Log("It's working: " + context.ReadValue<Vector2>());
+
+        transform.position = (Vector2)transform.position + context.ReadValue<Vector2>();
     }
 
     // Update is called once per frame
