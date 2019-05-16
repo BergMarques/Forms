@@ -1,26 +1,30 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyGameProject
+namespace Forms.Movers
 {
     public class MovingForms : MonoBehaviour
     {
+        [SerializeField]
+        private Transform _target;
 
         [SerializeField]
         private float _movementSpeed = 20f;
 
-        private Transform _myTransform;
+        float _distanceToTarget;
 
-        private void Start()
-        {
-            _myTransform = transform;
+        private void Awake()
+        {  
+
+            _distanceToTarget = Vector3.Distance(_target.position, transform.position);
         }
 
         void Update()
-        {
-            _myTransform.Translate(Vector3.back * _movementSpeed * Time.deltaTime);
+        {           
+            transform.Translate(-_target.transform.forward * _movementSpeed * Time.deltaTime);
         }
     }
     
