@@ -8,19 +8,12 @@ namespace Forms.Player
 {
     public class PlayerInput : MonoBehaviour
     {
-
+        
         [SerializeField]
+        private Vector2 _offset = new Vector2 (2, 0);
         private InputMaster _controlInput;
-        [SerializeField]
-        private Vector2 _offset = new Vector2 (1, 0);
-
         private Vector2 _moveAxis;
 
-        private int _moveIndex;
-
-        private bool test;
-
-        // Start is called before the first frame update
         void Awake()
         {
             _controlInput = new InputMaster();
@@ -35,17 +28,12 @@ namespace Forms.Player
 
         private void Movement_performed(InputAction.CallbackContext context)
         {
-
             if (CheckMovement(context))
                 return;
 
             transform.position = (Vector2)transform.position 
                 + context.ReadValue<Vector2>() 
                 * _offset;
-
-
-
-            Debug.Log("It's working: " + context.ReadValue<Vector2>());
         }
              
 
@@ -56,7 +44,6 @@ namespace Forms.Player
 
             _controlInput.Player.Movement.performed -= Movement_performed;
         }
-
 
         private bool CheckMovement(InputAction.CallbackContext _ctx)
         {
