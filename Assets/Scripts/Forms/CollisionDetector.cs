@@ -6,7 +6,6 @@ namespace Forms.Movers
 {
     public class CollisionDetector : MonoBehaviour
     {
-
         [TagSelector]
         [SerializeField]
         private string _target = "";
